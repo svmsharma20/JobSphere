@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.svm.jobsphere'
+version = '0.0.1'
+description = 'Job Orchestrator Service for scheduling and triggering jobs'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'     // Optional API endpoints
+//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'   // If scheduler metadata stored in DB
+//    implementation 'org.springframework.boot:spring-boot-starter-quartz'     // Job scheduling
+//    implementation 'org.springframework.boot:spring-boot-starter-validation'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client' // Service discovery
+//    implementation project(':job-executor-service')  // Direct dependency to executor (optional)
+
+//    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootBuildImage {
+    builder = "paketobuildpacks/builder-jammy-base"
+    imageName = "${project.name}:${project.version}"
+    environment = ["BP_NATIVE_IMAGE": "false"]
+
+    // For caching:
+    publish = false               // enables local daemon caching
+    cleanCache = false            // reuse build cache
+}

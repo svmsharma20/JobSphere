@@ -1,0 +1,16 @@
+FROM eclipse-temurin:17-jdk AS build
+WORKDIR /workspace
+
+# Copy everything so Gradle can see root build + wrapper + settings
+COPY ../../gradlew ./gradlew
+
+# Copy ONLY this service's folder
+COPY . ./service
+
+RUN chmod +x gradlew
+RUN ./gradlew :executor-service:bootJar --no-daemon
+
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /workspace/executor-service/build/libs/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

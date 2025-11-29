@@ -1,0 +1,77 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.0' apply false
+	id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+group = 'com.svm.jobsphere'
+version = '0.0.1-SNAPSHOT'
+description = 'JobSphere MVP: Job Scheduling, Execution, Gateway & Telemetry'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+allprojects {
+	repositories {
+		mavenCentral()
+	}
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'org.springframework.boot'
+
+	java {
+		toolchain {
+			languageVersion.set(JavaLanguageVersion.of(17))
+		}
+	}
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	bootBuildImage {
+		builder = "paketobuildpacks/builder-jammy-base"
+		imageName = "${project.name}"
+		environment = ["BP_NATIVE_IMAGE": "false"]
+
+		// For caching:
+		publish = false               // enables local daemon caching
+		cleanCache = false            // reuse build cache
+
+        buildCache {
+            volume {
+                name = "shared-buildpacks-cache"
+            }
+        }
+	}
+
+	dependencies {
+		// Common dependencies for all modules
+//		compileOnly 'org.projectlombok:lombok'
+//		annotationProcessor 'org.projectlombok:lombok'
+//
+//		developmentOnly 'org.springframework.boot:spring-boot-devtools'
+		developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+//
+//		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+
+	// Dependency management for Spring Cloud
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.3"
+		}
+	}
+}

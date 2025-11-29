@@ -1,0 +1,39 @@
+services:
+
+  gateway:
+#    build:
+#      context: ./gateway-service
+    image: gateway-service:0.0.1
+    container_name: gateway
+    ports:
+      - "8080:8080"
+
+  orchestrator:
+#    build:
+#      context: ./job-orchestrator-service
+    image: job-orchestrator-service:0.0.1
+    container_name: orchestrator
+    ports:
+      - "8081:8081"
+#    depends_on:
+#      - gateway
+
+  executor:
+#    build:
+#      context: ./job-executor-service
+    image: job-executor-service:0.0.1
+    container_name: executor
+    ports:
+      - "8082:8082"
+#    depends_on:
+#      - orchestrator
+
+  telemetry:
+#    build:
+#      context: ./telemetry-service
+    image: telemetry-service:0.0.1
+    container_name: telemetry
+    ports:
+      - "9090:9090"
+#    depends_on:
+#      - executor

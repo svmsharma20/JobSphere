@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.svm.jobsphere'
+version = '0.0.1'
+description = 'API Gateway Service for JobSphere'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'   // Reactive stack for Gateway
+//    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootBuildImage {
+    builder = "paketobuildpacks/builder-jammy-base"
+    imageName = "${project.name}:${project.version}"
+    environment = ["BP_NATIVE_IMAGE": "false"]
+
+    // For caching:
+    publish = false               // enables local daemon caching
+    cleanCache = false            // reuse build cache
+}

@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Start All [Local]" type="CompoundRunConfigurationType">
+    <toRun name="GatewayApplication" type="Application" />
+    <toRun name="JobExecutorApplication" type="Application" />
+    <toRun name="JobOrchestratorApplication" type="Application" />
+    <toRun name="TelemetryApplication" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>
