@@ -4,3 +4,5 @@ include 'job-executor-service'
 include 'gateway-service'
 include 'telemetry-service'
 
+
+include 'discovery-service'

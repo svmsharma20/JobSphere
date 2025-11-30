@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: telemetry-service
+  docker:
+    compose:
+      enabled: false
+
+server:
+  port: 9090
+  address: 0.0.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

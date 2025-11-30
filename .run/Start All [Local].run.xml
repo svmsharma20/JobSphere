@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Start All [Local]" type="CompoundRunConfigurationType">
+    <toRun name="DiscoveryApplication" type="Application" />
     <toRun name="GatewayApplication" type="Application" />
     <toRun name="JobExecutorApplication" type="Application" />
     <toRun name="JobOrchestratorApplication" type="Application" />

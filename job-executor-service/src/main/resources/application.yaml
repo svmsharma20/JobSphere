@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: executor-service
+
+  docker:
+    compose:
+      enabled: false
+
+server:
+  port: 8082
+  # address: 0.0.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          loadbalancer: DEBUG
