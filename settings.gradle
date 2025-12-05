@@ -1,6 +1,6 @@
 rootProject.name = 'JobSphere'
-include 'job-orchestrator-service'
-include 'job-executor-service'
+include 'scheduler-service'
+include 'executor-service'
 include 'gateway-service'
 include 'telemetry-service'
 

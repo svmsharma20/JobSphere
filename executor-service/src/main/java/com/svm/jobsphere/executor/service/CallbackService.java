@@ -15,18 +15,18 @@ public class CallbackService {
 
     public CallbackService(WebClient.Builder builder) {
         this.webClient = builder
-                .baseUrl("http://ORCHESTRATOR-SERVICE")
+                .baseUrl("http://SCHEDULER-SERVICE")
                 .build();
     }
 
     public void sendResult(ExecutionResult result) {
         String response = webClient.post()
-                .uri("/orchestrator/callback")
+                .uri("/scheduler/callback")
                 .bodyValue(result)
                 .retrieve()
                 .bodyToMono(String.class)
                 .onErrorResume(e -> {
-                    System.err.println("Callback to Orchestrator failed: " + e.getMessage());
+                    System.err.println("Callback to Scheduler failed: " + e.getMessage());
                     return Mono.error(new RuntimeException("Callback failed", e));
                 }).block();
         System.out.println(response);

@@ -3,7 +3,7 @@
     <toRun name="DiscoveryApplication" type="Application" />
     <toRun name="GatewayApplication" type="Application" />
     <toRun name="JobExecutorApplication" type="Application" />
-    <toRun name="JobOrchestratorApplication" type="Application" />
+    <toRun name="JobSchedulerApplication" type="Application" />
     <toRun name="TelemetryApplication" type="Application" />
     <method v="2" />
   </configuration>

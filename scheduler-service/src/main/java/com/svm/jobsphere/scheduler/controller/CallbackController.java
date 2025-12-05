@@ -1,4 +1,4 @@
-package com.svm.jobsphere.orchestrator.controller;
+package com.svm.jobsphere.scheduler.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/orchestrator")
+@RequestMapping("/scheduler")
 public class CallbackController {
 
     @PostMapping("/callback")

@@ -1,11 +1,11 @@
-package com.svm.jobsphere.orchestrator;
+package com.svm.jobsphere.scheduler;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/orchestrator")
+@RequestMapping("/scheduler")
 public class TestController {
 
     @GetMapping("/hello")

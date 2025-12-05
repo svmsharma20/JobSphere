@@ -1,4 +1,4 @@
-package com.svm.jobsphere.orchestrator.controller;
+package com.svm.jobsphere.scheduler.controller;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

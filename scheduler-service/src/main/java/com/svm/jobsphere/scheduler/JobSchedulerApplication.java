@@ -1,4 +1,4 @@
-package com.svm.jobsphere.orchestrator;
+package com.svm.jobsphere.scheduler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class JobOrchestratorApplication {
+public class JobSchedulerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JobOrchestratorApplication.class, args);
+		SpringApplication.run(JobSchedulerApplication.class, args);
 	}
-
 }

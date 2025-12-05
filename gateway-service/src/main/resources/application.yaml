@@ -11,10 +11,10 @@ spring:
       server:
         webmvc:
           routes:
-            - id: orchestrator
-              uri: lb://orchestrator-service
+            - id: scheduler
+              uri: lb://scheduler-service
               predicates:
-                - Path=/orchestrator/**
+                - Path=/scheduler/**
             - id: executor
               uri: lb://executor-service
               predicates:

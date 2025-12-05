@@ -8,10 +8,10 @@ services:
     ports:
       - "8080:8080"
 
-  orchestrator:
+  scheduler:
 #    build:
 #      context: ./job-orchestrator-service
-    image: job-orchestrator-service:0.0.1
+    image: scheduler-service:0.0.1
     container_name: orchestrator
     ports:
       - "8081:8081"
@@ -21,7 +21,7 @@ services:
   executor:
 #    build:
 #      context: ./job-executor-service
-    image: job-executor-service:0.0.1
+    image: executor-service:0.0.1
     container_name: executor
     ports:
       - "8082:8082"

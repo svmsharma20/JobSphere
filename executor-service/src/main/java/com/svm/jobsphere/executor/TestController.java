@@ -14,7 +14,7 @@ public class TestController {
 
     public TestController(WebClient.Builder builder) {
         this.webClient = builder
-                .baseUrl("http://ORCHESTRATOR-SERVICE") // 👈 Must use the exact Service ID (usually uppercase)
+                .baseUrl("http://SCHEDULER-SERVICE") // 👈 Must use the exact Service ID (usually uppercase)
                 .build();;
     }
 
@@ -26,14 +26,14 @@ public class TestController {
     @GetMapping("/hello2")
     public Mono<String> hello2() {
 
-        System.out.println("Attempting to call Orchestrator service...");
+        System.out.println("Attempting to call Scheduler service...");
 
         return webClient.get()
-                .uri("/orchestrator/hello")
+                .uri("/scheduler/hello")
                 .retrieve()
                 .bodyToMono(String.class)
                 .onErrorResume(e -> {
-                    System.err.println("Error calling Orchestrator: " + e.getMessage());
+                    System.err.println("Error calling Scheduler: " + e.getMessage());
                     return Mono.just("Error: Could not retrieve hello message.");
                 });
     }
